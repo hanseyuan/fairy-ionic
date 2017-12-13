@@ -1,0 +1,138 @@
+<!--
+  Generated template for the IndexPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-grid>
+    <ion-row align-items-center 
+    justify-content-center>
+      <ion-col col-2>
+        <button ion-button clear color="dark">
+          <ion-icon name="camera"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col>
+        <ion-searchbar  (keyup.enter)="jumpToMyList()"
+         [(ngModel)]="myInput"> 
+        </ion-searchbar>
+      </ion-col>
+      <ion-col col-2>
+        <button ion-button clear color="dark"  >
+          <ion-icon name="chatboxes"></ion-icon>         
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header>
+
+
+<ion-content padding>
+
+  <!--轮播-->
+  <ion-slides 
+   style="height:100px;margin:0;" *ngIf="banners.length > 0"
+   pager loop=true autoplay=1000 speed=1000 effect='fade' >
+    <ion-slide *ngFor="let item of banners" >
+      <a>
+        <img [src]="'assets/'+item.img" [alt]="item.title">
+      </a>
+    </ion-slide>
+  </ion-slides>
+
+  <!--秒杀(横向滚动)-->
+  <ion-grid>
+    <ion-row>
+      <ion-col style="line-height:30px;" >
+        <img style="height:20px;vertical-align:middle" src="assets/img/index/time.png" >
+        <span>/秒杀专区</span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-scroll style="margin:0;padding:0; white-space:nowrap; height:150px"  scrollX="true">
+    <ion-card   style="display:inline-block;margin:0;padding:0; height:105px;width:240px;"
+    *ngFor="let item of seckill_product">
+      <img [src]="'assets/'+item.pic" style="display:inline-block;height:100px; width:100px;vertical-align:top">
+      <ion-card-content style=" display:inline-block;white-space:pre-wrap;vertical-align:top">
+        <a style=" display:inline-block; width:80px; font-size:10px; color:red; word-break:keep-all;white-space:normal;">{{item.title}}</a>
+      </ion-card-content>
+    </ion-card>
+  </ion-scroll>
+  <!--楼层1-->
+
+  <ion-grid>
+    <ion-row>
+      <ion-col style="line-height:30px;" >
+        <img style="height:30px;vertical-align:top" src="assets/img/index/HUAWEI.jpg" >
+        <span>/1F</span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div *ngIf="floor1.length>0">
+    <div>
+       <img style="width:100%;" src="assets/img/index/huaweiMate10.jpg">
+    </div>
+    <div [navPush]="detailPage" [navParams]="{id:tmp.eid}" 
+     *ngFor="let tmp of floor1; let i = index;" style=" display:inline-block;width:50%;">
+        <div class="border" *ngIf="i>1&&i<6" style=" text-align:center;display:inline-block; ">
+          <img style="width:60%;margin:15px 0 5px" [src]="'assets/'+tmp.pic">
+          <div>
+            <h6 style="font-size:12px;">{{tmp.title}}</h6>
+            <p style="font-size:12px;margin:0px 0px 15px;color:red;">{{tmp.price}}</p>
+          </div>
+        </div>
+    </div>
+  </div>
+<!--楼层2-->
+  <ion-grid>
+    <ion-row>
+      <ion-col style="line-height:30px;" >
+        <img style="height:30px;vertical-align:top" src="assets/img/index/SAMSUNG.jpg" >
+        <span>/2F</span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div *ngIf="floor2.length>0">
+    <div>
+       <img style="width:100%;" src="assets/img/index/SAMSUNGnote8_.jpg">
+    </div>
+    <div   [navPush]="detailPage" [navParams]="{id:tmp.eid}" 
+    *ngFor="let tmp of floor2; let i = index;"  style=" display:inline-block;width:50%;">
+        <div class="border" *ngIf="i>1&&i<6" style=" text-align:center;display:inline-block; ">
+          <img style="width:60%;margin:15px 0 5px" [src]="'assets/'+tmp.pic">
+          <div>
+            <h6 style="font-size:12px;">{{tmp.title}}</h6>
+            <p style="font-size:12px;margin:0px 0px 15px;color:red;">{{tmp.price}}</p>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <!--楼层3-->
+  <ion-grid>
+    <ion-row>
+      <ion-col style="line-height:30px;" >
+        <img style="height:30px;vertical-align:top" src="assets/img/index/OPPO.jpg" >
+        <span>/3F</span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div *ngIf="floor3.length>0">
+    <div>
+       <img style="width:100%;" src="assets/img/index/OPPOA77.jpg">
+    </div>
+     <div   [navPush]="detailPage" [navParams]="{id:tmp.eid}" 
+     *ngFor="let tmp of floor3; let i = index;" style=" display:inline-block;width:50%;">
+        <div class="border" *ngIf="i>1&&i<6" style=" text-align:center;display:inline-block; ">
+          <img style="width:60%;margin:15px 0 5px" [src]="'assets/'+tmp.pic">
+          <div>
+            <h6 style="font-size:12px;">{{tmp.title}}</h6>
+            <p style="font-size:12px;margin:0px 0px 15px;color:red;">{{tmp.price}}</p>
+          </div>
+        </div>
+    </div>
+  </div>
+</ion-content>

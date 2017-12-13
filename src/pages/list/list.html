@@ -1,0 +1,47 @@
+<!--
+  Generated template for the ListPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>list</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div>
+    <p>共搜索到 {{count}} 件商品</p>
+  </div>
+ 
+  <!--缩略图列表-->
+  <ion-list>
+     <ion-item-sliding *ngFor="let item of product">
+        <ion-item [navPush]="detailPage"
+        [navParams]="{id:item.lid}" 
+        text-wrap >
+          <ion-thumbnail item-start>
+            <img [src]="'assets/'+item.md" >
+          </ion-thumbnail>
+          <h6 style="font-size:12px;white-space:pre-wrap;">{{item.title}}</h6>
+          <p style="color:red;">¥ {{item.price}}</p>
+        </ion-item>
+        <ion-item-options side="right">
+          <button ion-button color="secondary">找相似</button>
+        </ion-item-options>
+      </ion-item-sliding>
+  </ion-list>
+
+  <p *ngIf="nowPage>totalPages">全部商品已加载完成</p>
+
+  <!--加载-->
+  <ion-infinite-scroll  *ngIf="nowPage <= totalPages" (ionInfinite)="loadMore($event)">
+  <ion-infinite-scroll-content loadingText="正在加载数据"></ion-infinite-scroll-content>
+</ion-infinite-scroll>
+
+
+</ion-content>
